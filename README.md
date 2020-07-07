@@ -1,8 +1,12 @@
 # STIX 2.1 Drag and Drop Modeler
 
+There are three, primary technologies used to develop this software. React, MobX (state management) and Webpack. Some level of competence with these tech's will be needed to make code changes. SCSS is heavily integrated to allow granular control of styling the application.
+
 # Definitions
 
-The definitions are a direct copy from the OASIS schemas repository without mutation.
+The definitions are a direct copy from the OASIS schemas repository without mutation. Right now these are statically shimmed in. I could see a backend process regularly pulling these into the project. 
+
+Reference: https://github.com/oasis-open/cti-stix2-json-schemas/tree/master/schemas/
 
 # Definition Adapters
 
