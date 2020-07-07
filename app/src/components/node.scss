@@ -1,0 +1,30 @@
+@import '../defaults';
+
+.node {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 45px;
+    height: 45px;
+    transition: all .5s ease;
+
+    img {
+        width: 45px;
+    }
+}
+
+.hide-node {
+    display: none;
+}
+
+.show-node {
+    display: block;
+}
+
+.ok-border {
+    border: 3px dashed $default-active-bg;
+}
+
+.noway-border {
+    border: 3px dashed $error-font;
+}

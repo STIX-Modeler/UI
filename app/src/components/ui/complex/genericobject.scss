@@ -1,0 +1,84 @@
+@import '../../../defaults';
+
+.go-container {
+    padding-left: 20px;
+    padding-top: 20px;
+    padding-right: 10px;
+
+    .go-header {
+        font-weight: bold;
+        color: $default-active-bg;
+        padding-bottom: 3px;
+
+        span {
+            vertical-align: middle;
+            font-size: 14px;
+            cursor: pointer;
+        }
+    }
+
+    .go-body {
+        overflow-x: hidden;
+        border: 1px solid $standard-border-color;
+        min-height: 50px;
+        width: 100%;
+
+
+        .go-block-input {
+            display: flex;
+            flex-direction: row;
+            padding: 5px;
+            width: 100%;
+
+            .input {
+                margin: 10px 0px 10px 10px;
+                flex: .5;
+            }
+
+            .add-container {
+                width: 50px;
+                padding: 20px 0px 0px 15px;
+
+                span {
+                    cursor: pointer;
+                    color: $default-active-bg;
+                    padding-left: 5px;
+                }
+            }
+
+        }
+
+        .go-block {
+            margin: 10px;
+
+            .go-block-row {
+                display: flex;
+                flex-direction: row;
+                padding: 5px;
+                input {
+                    margin: 10px 0px 10px 10px;
+                    flex: .5;
+                }
+                div {
+                    padding: 10px;
+                    flex: .5;
+                }
+
+                span {
+                    vertical-align: middle;
+                    cursor: pointer;
+                    padding-left: 5px;
+                }
+
+                .remove {
+                    color: $error-font;
+                }
+
+                .add {
+                    padding-top: 15px;
+                    color: $default-active-bg;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,28 @@
+@import '../../../defaults';
+
+.mask {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    background-color: rgba(0, 0, 0,.2);
+    z-index: $panel-mask-index;
+
+    .panel {
+        position: absolute;
+        width: 600px;
+        top: 0px;
+        right: 0px;
+        bottom: 0px;
+        background-color: #fff;
+        box-shadow: -20px 25px 50px 0px #000;
+        z-index: $panel-index;
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+.hide-mask {
+    display: none;
+}

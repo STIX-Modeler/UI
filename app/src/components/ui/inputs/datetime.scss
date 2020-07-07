@@ -1,0 +1,17 @@
+@import '../../../defaults';
+
+.react-datepicker-wrapper {
+    width: 100%;
+}
+
+.react-datepicker__input-container input {
+    height: 39px;
+    border: 1px solid $standard-border-color;
+    background-color: transparent;
+    width: 97%;
+    padding-left: 10px;
+    font-family: $default-font-family;
+    color: #000;
+    font-size: 16px;
+    font-weight: bold;
+}

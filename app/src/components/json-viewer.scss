@@ -1,0 +1,22 @@
+.json-viewer {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    height: 100%;
+
+    pre {
+        flex: 1;
+        overflow: scroll;
+        overflow-x: hidden;
+        padding: 5px 0px 0px 10px;
+        font-family: courier;
+        font-size: 13px;
+    }
+
+    .json-controls {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        height: 30px;
+    }
+}

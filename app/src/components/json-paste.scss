@@ -1,0 +1,29 @@
+.json-paste {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    height: 100%;
+
+    .paste-area {
+        flex: 1;
+        padding: 5px 0px 0px 10px;
+        display: flex;
+        flex-direction: column;
+
+        div {
+            flex: 1;
+            textarea {
+                height: 97%;
+                font-family: courier;
+                font-size: 12px;
+            }
+        }
+    }
+
+    .json-controls {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        height: 30px;
+    }
+}

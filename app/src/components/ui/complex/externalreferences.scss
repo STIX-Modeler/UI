@@ -1,0 +1,56 @@
+@import '../../../defaults';
+
+.er-container {
+    padding-left: 20px;
+    padding-top: 20px;
+
+    .er-header {
+        font-weight: bold;
+        color: $default-active-bg;
+        padding-bottom: 3px;
+
+        span {
+            vertical-align: middle;
+            font-size: 14px;
+            cursor: pointer;
+        }
+    }
+
+    .er-body {
+        overflow: auto;
+        border: 1px solid $standard-border-color;
+        min-height: 50px;
+
+        .er-block {
+            border: 1px solid $standard-border-color;
+            margin: 10px;
+
+            .er-block-row {
+                display: flex;
+                flex-direction: row;
+                select {
+                    margin: 10px 0px 10px 10px;
+                    flex: .5;
+                }
+                div {
+                    padding: 10px;
+                    flex: .5;
+                }
+
+                span {
+                    vertical-align: middle;
+                    cursor: pointer;
+                }
+
+                .remove {
+                    color: $error-font;
+                }
+
+                .add {
+                    padding-top: 15px;
+                    color: $default-active-bg;
+                }
+            }
+        }
+    }
+}

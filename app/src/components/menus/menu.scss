@@ -1,0 +1,36 @@
+@import '../../defaults';
+
+.menu {
+    position: fixed;
+    bottom: 20px;
+    right: 25px;
+
+    .row {
+        display: flex;
+        flex-direction: row;
+
+        .menu-item {
+            width: 40px;
+            padding-right: 10px;
+            cursor: pointer;
+
+            img {
+                width: 40px;
+            }
+        }
+
+        .obs {
+            width: 40px;
+            height: 40px;
+            border-radius: 5px;
+            background-color: $default-active-bg;
+
+            div {
+                padding-top: 10px;
+                padding-left: 7px;
+                color: $light-font-0;
+                cursor: pointer;
+            }
+        }
+    }
+}

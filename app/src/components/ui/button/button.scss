@@ -1,0 +1,48 @@
+@import '../../../defaults';
+
+button:focus {
+    outline: none;
+}
+
+button.def {
+    width: auto;
+    min-width: 130px;
+    height: 30px;
+    color: $light-font-0;
+    font-family: $default-font-family;
+    font-size: 14px;
+    border-color: transparent;
+    cursor: pointer;
+
+    i {
+        vertical-align: middle;
+    }
+}
+
+button.disabled {
+    background-color: rgba(128,128,128,.8) !important;
+    color: $gray-font-0 !important;
+    cursor: auto;
+}
+
+.disco-relationship {
+    background: transparent;
+    border: 1px solid #243244 !important;
+
+}
+
+.standard {
+    background-color: rgba(70,160,245,.8) !important;
+}
+
+.confirm {
+    background-color: rgba(83,129,60,.8) !important;
+}
+
+.caution {
+    background-color: rgba(202,202,57,.8) !important;
+}
+
+.cancel {
+    background-color: rgba(143,44,44,.8) !important;
+}

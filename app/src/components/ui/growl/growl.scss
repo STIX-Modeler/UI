@@ -1,0 +1,12 @@
+@import "../../../defaults";
+
+.growl {
+    position: fixed;
+    right: 10px;
+    top: 10px;
+    z-index: $growl-index;
+    background-color: $default-active-bg;
+    color: $light-font-0;
+    padding: 11px;
+    border-radius: 5px;
+}

@@ -1,0 +1,12 @@
+@import './defaults';
+
+body, html, #app {
+    margin: 0px;
+    padding: 0px;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    font-family: $default-font-family;
+}

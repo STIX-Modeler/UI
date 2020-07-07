@@ -1,0 +1,40 @@
+@import '../../../defaults';
+
+input:focus, textarea:focus, select {
+    outline:none;
+}
+
+input.def, textarea, select {
+    height: 39px;
+    border: 1px solid $standard-border-color;
+    background-color: transparent;
+    width: 97%;
+    padding-left: 10px;
+    color: $dark-font-0;
+    font-size: 16px;
+    font-family: $default-font-family;
+}
+
+textarea {
+    height: 80px;
+}
+
+select {
+    height: 44px;
+}
+
+::-webkit-input-placeholder {
+    color: #4f5257;
+}
+
+::-ms-input-placeholder {
+    color: red;
+}
+
+::-moz-placeholder {
+    color: red;
+}
+
+::-moz-placeholder {
+    color: red;
+}

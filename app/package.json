@@ -1,0 +1,149 @@
+{
+  "name": "minimal-webpack-react",
+  "version": "2.0.0",
+  "description": "Boilerplate for react and webpack",
+  "main": "index.js",
+  "scripts": {
+    "start": "cross-env NODE_ENV=development webpack-dev-server --open",
+    "build": "cross-env NODE_ENV=production webpack",
+    "format": "prettier --write 'packages/**/*.js'",
+    "test": "jest --watchAll --coverage"
+  },
+  "lint-staged": {
+    "*.{js,jsx,scss,css,md}": [
+      "prettier --write --single-quote",
+      "eslint --fix",
+      "git add"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "jest": {
+    "testEnvironment": "jsdom",
+    "moduleDirectories": [
+      "src",
+      "node_modules"
+    ],
+    "moduleNameMapper": {
+      "\\.(css|scss)$": "<rootDir>/__mocks__/styleMock.js",
+      "\\.(jpg|gif|ttf|eot|svg)$": "<rootDir>/__mocks__/fileMock.js"
+    },
+    "transform": {
+      "^.+\\.(js|jsx)$": "babel-jest",
+      ".+\\.(css|styl|less|sass|scss)$": "<rootDir>/node_modules/jest-css-modules-transform"
+    },
+    "setupTestFrameworkScriptFile": "<rootDir>/setupTests.js",
+    "moduleFileExtensions": [
+      "css",
+      "scss",
+      "js",
+      "json",
+      "jsx"
+    ]
+  },
+  "repository": "https://github.com/HashemKhalifa/webpack-react-boilerplate",
+  "author": "HashemKhalifa",
+  "license": "ISC",
+  "private": false,
+  "engines": {
+    "node": ">=8",
+    "npm": ">=3"
+  },
+  "dependencies": {
+    "@babel/plugin-transform-react-constant-elements": "7.7.4",
+    "@babel/plugin-transform-react-inline-elements": "7.7.4",
+    "axios": "^0.19.0",
+    "babel-plugin-transform-react-pure-class-to-function": "1.0.1",
+    "babel-plugin-transform-react-remove-prop-types": "0.4.24",
+    "core-js": "3.6.1",
+    "deepmerge": "^4.2.2",
+    "lazy-route": "^1.0.7",
+    "leader-line": "^1.0.5",
+    "lodash": "4.17.15",
+    "mobx-react": "^6.1.4",
+    "moment": "^2.24.0",
+    "prop-types": "15.7.2",
+    "rc-slider": "^9.3.0",
+    "react": "16.12.0",
+    "react-datepicker": "^2.16.0",
+    "react-dom": "16.12.0",
+    "react-hot-loader": "4.12.18",
+    "react-router-dom": "^5.1.2",
+    "react-tooltip": "^4.2.6",
+    "rfx-core": "^1.6.2"
+  },
+  "resolutions": {
+    "babel-core": "7.0.0-bridge.0"
+  },
+  "devDependencies": {
+    "@babel/core": "7.7.7",
+    "@babel/plugin-proposal-class-properties": "7.7.4",
+    "@babel/plugin-proposal-decorators": "7.7.4",
+    "@babel/plugin-proposal-export-namespace-from": "7.7.4",
+    "@babel/plugin-proposal-function-sent": "7.7.4",
+    "@babel/plugin-proposal-json-strings": "7.7.4",
+    "@babel/plugin-proposal-numeric-separator": "7.7.4",
+    "@babel/plugin-proposal-throw-expressions": "7.7.4",
+    "@babel/plugin-syntax-dynamic-import": "7.7.4",
+    "@babel/plugin-syntax-import-meta": "7.7.4",
+    "@babel/plugin-transform-runtime": "7.7.6",
+    "@babel/preset-env": "7.7.7",
+    "@babel/preset-react": "7.7.4",
+    "@babel/register": "7.7.7",
+    "@babel/runtime": "7.7.7",
+    "babel-core": "7.0.0-bridge.0",
+    "babel-eslint": "10.0.3",
+    "babel-jest": "24.9.0",
+    "babel-loader": "8.0.6",
+    "babel-plugin-lodash": "3.3.4",
+    "babel-preset-react-optimize": "1.0.1",
+    "browserslist": "4.8.2",
+    "clean-webpack-plugin": "3.0.0",
+    "connect-history-api-fallback": "1.6.0",
+    "copy-webpack-plugin": "^6.0.1",
+    "cross-env": "6.0.3",
+    "css-loader": "3.4.0",
+    "enzyme": "3.11.0",
+    "enzyme-adapter-react-16": "1.15.2",
+    "eslint": "6.8.0",
+    "eslint-config-airbnb": "18.0.1",
+    "eslint-config-prettier": "6.9.0",
+    "eslint-loader": "3.0.3",
+    "eslint-plugin-import": "2.19.1",
+    "eslint-plugin-jest": "23.1.1",
+    "eslint-plugin-jsx-a11y": "6.2.3",
+    "eslint-plugin-prettier": "3.1.2",
+    "eslint-plugin-react": "7.17.0",
+    "eslint-watch": "6.0.1",
+    "file-loader": "5.0.2",
+    "html-webpack-plugin": "^3.2.0",
+    "husky": "3.1.0",
+    "identity-obj-proxy": "3.0.0",
+    "jest": "24.9.0",
+    "jest-css-modules-transform": "3.1.0",
+    "jest-enzyme": "7.1.2",
+    "jest-fetch-mock": "3.0.0",
+    "jsdom": "15.2.1",
+    "koa-connect": "2.0.1",
+    "lint-staged": "9.5.0",
+    "mini-css-extract-plugin": "0.9.0",
+    "mobx": "^5.15.1",
+    "node-sass": "^4.14.1",
+    "npm-check-updates": "4.0.1",
+    "optimize-css-assets-webpack-plugin": "5.0.3",
+    "prettier": "1.19.1",
+    "pretty-quick": "2.0.1",
+    "sass-loader": "8.0.0",
+    "script-ext-html-webpack-plugin": "2.1.4",
+    "skeleton-loader": "^2.0.0",
+    "style-loader": "1.1.2",
+    "terser-webpack-plugin": "2.3.1",
+    "webpack": "4.41.5",
+    "webpack-cli": "3.3.10",
+    "webpack-dev-server": "^3.11.0",
+    "webpack-merge": "4.2.2"
+  }
+}

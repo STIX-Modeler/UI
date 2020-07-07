@@ -1,0 +1,58 @@
+@import '../../defaults';
+
+.top-menu {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+
+    .row {
+        display: flex;
+        flex-direction: row;
+
+        .menu-item-small {
+            width: 20px;
+            height: 20px;
+        }
+
+        .menu-item-medium {
+            width: 25px;
+            height: 20px;
+        }
+
+        .json-btn {
+            border-radius: 5px;
+            cursor: pointer;
+            padding: 5px 4px 5px 11px;
+            color: #fff;
+            font-weight: bold;
+            background-color: $default-active-bg;
+        }
+
+        .json-paste-btn {
+            border-radius: 5px;
+            cursor: pointer;
+            padding: 5px 4px 5px 8px;
+            margin-right: 10px;
+            color: #fff;
+            font-weight: bold;
+            background-color: $default-active-bg;
+        }
+
+        .reset-btn {
+            border-radius: 5px;
+            cursor: pointer;
+            padding: 5px 11px 5px 11px;
+            color: #fff;
+            font-weight: bold;
+            background-color: $default-active-bg;
+            margin-left: 10px;
+
+            .i {
+                width: 20px;
+                vertical-align: middle;
+                font-size: 16px;
+            }
+        }
+
+    }
+}
