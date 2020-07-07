@@ -2,8 +2,6 @@ const webpack = require('webpack');
 
 const commonPaths = require('./paths');
 
-console.log(commonPaths.root + "/src/" + commonPaths.imagesFolder)
-
 module.exports = {
   mode: 'development',
   output: {

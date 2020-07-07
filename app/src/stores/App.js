@@ -728,8 +728,6 @@ export default class App {
                         newNode.properties[key].value = o[key];
                     }
 
-                    console.log(newNode);
-
                     this.persistNode(newNode);
                 }
             });

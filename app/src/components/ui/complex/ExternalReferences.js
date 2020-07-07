@@ -37,8 +37,6 @@ export default class ExternalReferences extends React.Component {
     onClickHandler() {
         const property = this.state.property;
         const value = this.state.value;
-
-        console.log(this.state)
     }
 
     onClickDeleteHandler(select, idx) {
