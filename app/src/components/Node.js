@@ -42,7 +42,7 @@ export default class Node extends React.Component {
 
     onDragOverHandler(event) {
         event.preventDefault();
-        this.props.onDragOverNodeHandler(this.props.n);
+        this.props.onDragOverNodeHandler(event, this.props.n);
     }
 
     onDropHandler(event) {
