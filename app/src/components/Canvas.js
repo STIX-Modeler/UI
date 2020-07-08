@@ -148,6 +148,7 @@ export default class Canvas extends React.Component {
     }
 
     resetBorders() {
+        this.clearAllCSSBorderCls();
         this.store.failedRelationship = undefined;
     }
 
@@ -309,8 +310,37 @@ export default class Canvas extends React.Component {
     }
 
     //Drag over another node on the screen
-    onDragOverNodeHandler(nodeOnScreen) {
-        this.store.canRelate(nodeOnScreen);
+    onDragOverNodeHandler(event, nodeOnScreen) {
+        let canRelate = this.store.canRelate(nodeOnScreen);
+
+        if (event.currentTarget.id != this.store.dragging.id) {
+            if (canRelate) {
+                if (!event.currentTarget.classList.contains("ok-border")) {
+                    event.currentTarget.classList.add("ok-border");
+                }
+            } else {
+                if (!event.currentTarget.classList.contains("noway-border")) {
+                    event.currentTarget.classList.add("noway-border");
+                }
+            }
+        }
+
+    }
+
+    clearAllCSSBorderCls() {
+        var nodes = document.getElementsByClassName("node");
+
+        for (let i=0; i<nodes.length; i++) {
+            if (
+                nodes[i].classList.contains("ok-border") ||
+                nodes[i].classList.contains("noway-border")
+            ) {
+                console.log("getting to this")
+                nodes[i].classList.remove("noway-border");
+                nodes[i].classList.remove("ok-border");
+            }
+        }
+
     }
 
     //Drop on another node on the screen
@@ -324,6 +354,8 @@ export default class Canvas extends React.Component {
                 this.transition(this.store.dragging.id, false);
             }, 200);
         }
+
+        this.clearAllCSSBorderCls();
     }
 
     onClickAddGenericObjectHandler(field, o) {
