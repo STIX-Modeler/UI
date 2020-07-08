@@ -7,6 +7,7 @@
     width: 45px;
     height: 45px;
     transition: all .5s ease;
+    border: 3px dashed transparent;
 
     img {
         width: 45px;
@@ -23,8 +24,10 @@
 
 .ok-border {
     border: 3px dashed $default-active-bg;
+    border-radius: 3px;
 }
 
 .noway-border {
     border: 3px dashed $error-font;
+    border-radius: 3px;
 }
