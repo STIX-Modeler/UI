@@ -3,14 +3,21 @@
     flex-direction: column;
     flex: 1;
     height: 100%;
+    min-height: 100px;
 
-    pre {
+    .json-content {
         flex: 1;
-        overflow: scroll;
+        overflow-y: auto;
         overflow-x: hidden;
         padding: 5px 0px 0px 10px;
         font-family: courier;
         font-size: 13px;
+        display: flex;
+        flex-direction: column;
+
+        pre {
+            flex: 1;
+        }
     }
 
     .json-controls {
