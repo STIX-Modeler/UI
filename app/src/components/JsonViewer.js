@@ -39,7 +39,10 @@ export default class JsonViewer extends React.Component {
             <Panel show={this.props.show}
                 onClickHideHandler={this.props.onClickHideHandler}>
                     <div className="json-viewer">
-                        <pre id="json-content">{JSON.stringify(this.props.json, null, 2)}</pre>
+                        <div className="json-content">
+                            <pre id="json-content">{JSON.stringify(this.props.json, null, 2)}</pre>
+                        </div>
+
 
                         <div className="json-controls">
                             <Button cls="def standard json-copy" text="Copy" onClick={this.onClickCopyJSONHandler}>
