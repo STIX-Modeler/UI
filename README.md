@@ -1,5 +1,8 @@
 # STIX 2.1 Drag and Drop Modeler
 
+![Image of UI]
+(https://github.com/STIX-Modeler/UI/blob/develop/example-stix.png)
+
 There are three, primary technologies used to develop this software. React, MobX (state management) and Webpack. Some level of competence with these tech's will be needed to make code changes. SCSS is heavily integrated to allow granular control of styling the application.
 
 I want to be clear, this is not a tool that is intended to visualize a tremendous amount of nodes. For that, a forced directed graph should be used.
