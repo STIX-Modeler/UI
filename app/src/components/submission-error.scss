@@ -1,0 +1,22 @@
+@import "../defaults";
+
+.submission-error {
+    .header {
+        padding: 10px;
+        font-size: 18px;
+
+        img {
+            vertical-align: middle;
+            padding-right: 10px;
+        }
+    }
+
+    .row {
+        padding-left: 55px;
+
+        span {
+            color: $default-active-bg;
+            padding-right: 6px;
+        }
+    }
+}
