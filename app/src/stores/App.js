@@ -1,54 +1,55 @@
 import { observable, action, toJS } from "mobx";
-import { dispatch } from 'rfx-core';
-import deepmerge from 'deepmerge';
-import _cloneDeep from 'lodash/cloneDeep';
-import _merge from 'lodash/merge';
-import moment from 'moment';
+import { dispatch } from "rfx-core";
+import deepmerge from "deepmerge";
+import _cloneDeep from "lodash/cloneDeep";
+import _merge from "lodash/merge";
+import moment from "moment";
+import Proxy from "./Proxy";
 
-import uuidv4 from 'uuid';
+import uuidv4 from "uuid";
 
-import ap from '../definition-adapters/AttackPattern.js';
-import indicator from '../definition-adapters/Indicator.js';
-import malware from '../definition-adapters/Malware.js';
-import ma from '../definition-adapters/MalwareAnalysis.js';
-import sighting from '../definition-adapters/Sighting.js';
-import coa from '../definition-adapters/CourseOfAction.js';
-import campaign from '../definition-adapters/Campaign.js';
-import od from '../definition-adapters/ObservedData.js';
-import identity from '../definition-adapters/Identity.js';
-import tool from '../definition-adapters/Tool.js';
-import report from '../definition-adapters/Report.js';
-import vuln from '../definition-adapters/Vulnerability.js';
-import grouping from '../definition-adapters/Grouping.js';
-import infra from '../definition-adapters/Infrastructure.js';
-import is from '../definition-adapters/IntrusionSet.js';
-import location from '../definition-adapters/Location.js';
-import ta from '../definition-adapters/ThreatActor.js';
-import note from '../definition-adapters/Note.js';
-import opinion from '../definition-adapters/Opinion.js';
-import tlpred from '../definition-adapters/MarkingDefinitionRed.js';
-import tlpamber from '../definition-adapters/MarkingDefinitionAmber.js';
-import tlpgreen from '../definition-adapters/MarkingDefinitionGreen.js';
+import ap from "../definition-adapters/AttackPattern.js";
+import indicator from "../definition-adapters/Indicator.js";
+import malware from "../definition-adapters/Malware.js";
+import ma from "../definition-adapters/MalwareAnalysis.js";
+import sighting from "../definition-adapters/Sighting.js";
+import coa from "../definition-adapters/CourseOfAction.js";
+import campaign from "../definition-adapters/Campaign.js";
+import od from "../definition-adapters/ObservedData.js";
+import identity from "../definition-adapters/Identity.js";
+import tool from "../definition-adapters/Tool.js";
+import report from "../definition-adapters/Report.js";
+import vuln from "../definition-adapters/Vulnerability.js";
+import grouping from "../definition-adapters/Grouping.js";
+import infra from "../definition-adapters/Infrastructure.js";
+import is from "../definition-adapters/IntrusionSet.js";
+import location from "../definition-adapters/Location.js";
+import ta from "../definition-adapters/ThreatActor.js";
+import note from "../definition-adapters/Note.js";
+import opinion from "../definition-adapters/Opinion.js";
+import tlpred from "../definition-adapters/MarkingDefinitionRed.js";
+import tlpamber from "../definition-adapters/MarkingDefinitionAmber.js";
+import tlpgreen from "../definition-adapters/MarkingDefinitionGreen.js";
 
-import obs from '../definition-adapters/Observable.js';
-import artifact from '../definition-adapters/Artifact.js';
-import software from '../definition-adapters/Software.js';
-import ipv4 from '../definition-adapters/IPv4Addr.js';
-import ipv6 from '../definition-adapters/IPv6Addr.js';
-import autosys from '../definition-adapters/AutonomousSystem.js';
-import dir from '../definition-adapters/Directory.js';
-import domain from '../definition-adapters/DomainName.js';
-import emailaddr from '../definition-adapters/EmailAddr.js';
-import emailmsg from '../definition-adapters/EmailMessage.js';
-import file from '../definition-adapters/File.js';
-import mac from '../definition-adapters/MacAddr.js';
-import mutex from '../definition-adapters/Mutex.js';
-import network from '../definition-adapters/NetworkTraffic.js';
-import process from '../definition-adapters/Process.js';
-import url from '../definition-adapters/Url.js';
-import ua from '../definition-adapters/UserAccount.js';
-import winregkey from '../definition-adapters/WindowsRegistryKey.js';
-import cert from '../definition-adapters/Certificate.js';
+import obs from "../definition-adapters/Observable.js";
+import artifact from "../definition-adapters/Artifact.js";
+import software from "../definition-adapters/Software.js";
+import ipv4 from "../definition-adapters/IPv4Addr.js";
+import ipv6 from "../definition-adapters/IPv6Addr.js";
+import autosys from "../definition-adapters/AutonomousSystem.js";
+import dir from "../definition-adapters/Directory.js";
+import domain from "../definition-adapters/DomainName.js";
+import emailaddr from "../definition-adapters/EmailAddr.js";
+import emailmsg from "../definition-adapters/EmailMessage.js";
+import file from "../definition-adapters/File.js";
+import mac from "../definition-adapters/MacAddr.js";
+import mutex from "../definition-adapters/Mutex.js";
+import network from "../definition-adapters/NetworkTraffic.js";
+import process from "../definition-adapters/Process.js";
+import url from "../definition-adapters/Url.js";
+import ua from "../definition-adapters/UserAccount.js";
+import winregkey from "../definition-adapters/WindowsRegistryKey.js";
+import cert from "../definition-adapters/Certificate.js";
 
 const SPEC_VERSION = "2.1";
 
@@ -59,6 +60,7 @@ export default class App {
     @observable showJSONPaste = false;
     @observable showRelPicker = false;
     @observable showGrowl = false;
+    @observable showSubmissionError = false;
     @observable growlMessage = "";
     @observable relationships = [];
     @observable dragging = {};
@@ -68,6 +70,7 @@ export default class App {
     @observable nodes = [];
     @observable edges = [];
     @observable lines = [];
+    @observable failedCollection = [];
     @observable objects = [
         sighting,
         malware,
@@ -172,6 +175,7 @@ export default class App {
                     if (object.id === relationship.target_ref) {
                         if (typeof(type) === "string") {
                             object[key] = relationship.source_ref;
+                            updateNode(key, relationship.source_ref);
                         } else if (Array.isArray(type)) {
                             object[key].push(relationship.source_ref);
                         }
@@ -842,7 +846,6 @@ export default class App {
         });
 
         for (let i = removeEdgePositions.length; i--;) {
-            console.log(i)
             this.edges.splice(i, 1);
         }
 
@@ -876,6 +879,113 @@ export default class App {
         });
 
         this.showDetails = false;
+    }
+
+    validateSubmission() {
+        let nodes = this.nodes;
+
+        nodes.map(node => {
+            for (let key in node.properties) {
+                if (node.required.indexOf(key) > -1) {
+                    // For required refs check the bundle
+                    // instead of the node.
+                    if (key.indexOf("_refs") > -1) {
+                        this.bundle.objects.map(o => {
+                            for (let item in o) {
+                                if (item === key) {
+                                    if (!o[item].length) {
+                                        this.failedCollection.push({
+                                            node: node.id,
+                                            type: node.type,
+                                            img: node.img,
+                                            property: key,
+                                            msg: "Required field, value must be provided."
+                                        });
+                                    }
+                                }
+                            }
+                        });
+                    } else {
+                        if (node.properties[key].hasOwnProperty("value")) {
+                            if (Array.isArray(node.properties[key].value)) {
+                                if (!node.properties[key].value.length) {
+                                    this.failedCollection.push({
+                                        node: node.id,
+                                        type: node.type,
+                                        img: node.img,
+                                        property: key,
+                                        msg: "Required field, value must be provided."
+                                    });
+                                }
+                            } else {
+                                if (typeof node.properties[key].value === 'object') {
+                                    if (!Object.keys(node.properties[key].value).length) {
+                                        this.failedCollection.push({
+                                            node: node.id,
+                                            type: node.type,
+                                            img: node.img,
+                                            property: key,
+                                            msg: "Required field, value must be provided."
+                                        });
+                                    }
+                                } else {
+                                    if (!node.properties[key].value.length) {
+                                        this.failedCollection.push({
+                                            node: node.id,
+                                            type: node.type,
+                                            img: node.img,
+                                            property: key,
+                                            msg: "Required field, value must be provided."
+                                        });
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+    submit() {
+        this.validateSubmission();
+
+        if (!this.failedCollection.length) {
+            let bundle = _cloneDeep(this.bundle);
+
+            bundle.objects.map(o => {
+                for (let key in o) {
+                    if (Array.isArray(o[key])) {
+                        if (!o[key].length) {
+                            delete o[key];
+                        }
+                    } else {
+                        if (typeof o[key] === 'object') {
+                            if (!Object.keys(o[key]).length) {
+                                delete o[key];
+                            }
+                        } else {
+                            if (!o[key].length) {
+                                delete o[key];
+                            }
+                        }
+                    }
+                }
+            });
+
+            /***
+            TODO plumb in your API call
+            **/
+            Proxy.submit(bundle);
+
+        } else {
+            this.showSubmissionError = true;
+        }
+    }
+
+    resetSubmissionError() {
+        this.showSubmissionError = false;
+        this.failedCollection = [];
     }
 
     reset() {

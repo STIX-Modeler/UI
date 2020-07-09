@@ -12,6 +12,7 @@ import JsonViewer from "./JsonViewer";
 import JsonPaste from "./JsonPaste";
 import RelationshipPicker from "./RelationshipPicker";
 import Growl from "./ui/growl/Growl";
+import SubmissionError from "./SubmissionError";
 
 import canvasStyle from "./canvas.scss";
 
@@ -62,6 +63,8 @@ export default class Canvas extends React.Component {
         this.onChangeJSONPasteHandler = this.onChangeJSONPasteHandler.bind(this);
         this.onClickJSONPasteHandler = this.onClickJSONPasteHandler.bind(this);
         this.onClickDeleteHandler = this.onClickDeleteHandler.bind(this);
+        this.onClickSubmitHandler = this.onClickSubmitHandler.bind(this);
+        this.onClickHideSubmissionErrorHandler = this.onClickHideSubmissionErrorHandler.bind(this);
     }
 
     componentWillMount() {
@@ -95,6 +98,10 @@ export default class Canvas extends React.Component {
     onClickShowGrowlHandler(message) {
         this.store.growlMessage = message;
         this.store.showGrowl = true;
+    }
+
+    onClickHideSubmissionErrorHandler() {
+        this.store.resetSubmissionError();
     }
 
     transition(id, sticky, random) {
@@ -335,7 +342,6 @@ export default class Canvas extends React.Component {
                 nodes[i].classList.contains("ok-border") ||
                 nodes[i].classList.contains("noway-border")
             ) {
-                console.log("getting to this")
                 nodes[i].classList.remove("noway-border");
                 nodes[i].classList.remove("ok-border");
             }
@@ -368,6 +374,10 @@ export default class Canvas extends React.Component {
 
     onClickResetHandler() {
         this.store.reset();
+    }
+
+    onClickSubmitHandler() {
+        this.store.submit();
     }
 
     drawEdge(persisted) {
@@ -439,7 +449,8 @@ export default class Canvas extends React.Component {
                     <TopMenu onClickShowJsonHandler={this.onClickShowJsonHandler}
                         onClickShowJsonPasteHandler={this.onClickShowJsonPasteHandler}
                         onClickHideJsonHandler={this.onClickHideJsonHandler}
-                        onClickResetHandler={this.onClickResetHandler} />
+                        onClickResetHandler={this.onClickResetHandler}
+                        onClickSubmitHandler={this.onClickSubmitHandler} />
 
                     <Menu
                         objects={this.store.objects}
@@ -486,6 +497,10 @@ export default class Canvas extends React.Component {
                     <Growl message={this.store.growlMessage}
                         show={this.store.showGrowl}
                         timer={this.onMessageTimerHandler} />
+
+                    <SubmissionError error={this.store.failedCollection}
+                        show={this.store.showSubmissionError}
+                        onClickHideHandler={this.onClickHideSubmissionErrorHandler} />
             </div>
         )
     }
