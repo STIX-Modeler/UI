@@ -5,9 +5,11 @@
 
 There are three, primary technologies used to develop this software. React, MobX (state management) and Webpack. Some level of competence with these tech's will be needed to make code changes. SCSS is heavily integrated to allow granular control of styling the application.
 
+I want to be clear, this is not a tool that is intended to visualize a tremendous amount of nodes. For that, a forced directed graph should be used.
+
 # Definitions
 
-The definitions are a direct copy from the OASIS schemas repository without mutation. Right now these are statically shimmed in. I could see a backend process regularly pulling these into the project. 
+The definitions are a direct copy from the OASIS schemas repository without mutation. Right now these are statically shimmed in. I could see a backend process regularly pulling these into the project.
 
 Reference: https://github.com/oasis-open/cti-stix2-json-schemas/tree/master/schemas/
 
@@ -39,3 +41,16 @@ In the definitions specific to an object, I hoist the vocabs onto the property i
 Specific vocab notes
 
 - labels: there are placeholder values located in definition-adapters/Base.js. This can easily be updated to reflect your sharing group or company's standard list for each object or even hidden with the `control` property.
+
+# Usage
+
+Currently, the only usage workflow is via a dev build outlined below. This is simple enough for anyone to perform.
+
+ - Pull down bits (via fork or clicking download)
+ - $ cd app
+ - $npm install
+ - $npm start
+
+There is a modest production build that is also integrated. This can get a compiled version deployed in a short amount of time.
+
+- $ npm run build
