@@ -27,6 +27,10 @@ export default class TopMenu extends React.Component {
                         <span className="i material-icons">refresh</span> Reset
                     </div>
 
+                    <div data-tip={"Submit JSON"} className="reset-btn menu-item" onClick={this.props.onClickSubmitHandler}>
+                        <span className="i material-icons">add</span> Submit
+                    </div>
+
                     <Tooltip />
                 </div>
             </div>
