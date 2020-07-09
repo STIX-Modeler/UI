@@ -1,7 +1,6 @@
 # STIX 2.1 Drag and Drop Modeler
 
-![Image of UI]
-(https://github.com/STIX-Modeler/UI/blob/develop/example-stix.png)
+![Image of UI](https://github.com/STIX-Modeler/UI/blob/develop/example-stix.png)
 
 There are three, primary technologies used to develop this software. React, MobX (state management) and Webpack. Some level of competence with these tech's will be needed to make code changes. SCSS is heavily integrated to allow granular control of styling the application.
 
