@@ -23,6 +23,10 @@ export default class Canvas extends React.Component {
     constructor(props) {
         super(props);
 
+        document.addEventListener("dragover", (e) => {
+            this.store.setMousePosition(e);
+        }, false);
+
         this.store = this.props.store.appStore;
 
         this.generateNodeID = this.generateNodeID.bind(this);
@@ -65,12 +69,6 @@ export default class Canvas extends React.Component {
         this.onClickDeleteHandler = this.onClickDeleteHandler.bind(this);
         this.onClickSubmitHandler = this.onClickSubmitHandler.bind(this);
         this.onClickHideSubmissionErrorHandler = this.onClickHideSubmissionErrorHandler.bind(this);
-    }
-
-    componentWillMount() {
-        document.addEventListener("dragover", (e) => {
-            this.store.setMousePosition(e);
-        }, false);
     }
 
     componentWillUnmount() {
