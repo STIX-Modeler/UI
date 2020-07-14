@@ -4,6 +4,9 @@ const commonPaths = require('./paths');
 
 module.exports = {
   mode: 'development',
+  resolve: {
+      alias: { 'react-dom': '@hot-loader/react-dom'  }
+  },
   output: {
     filename: '[name].js',
     path: commonPaths.outputPath,

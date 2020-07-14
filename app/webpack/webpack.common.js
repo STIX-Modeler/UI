@@ -16,22 +16,10 @@ module.exports = {
           loader: 'skeleton-loader',
           options: {procedure: content => `${content}export default LeaderLine`}
         }]
-    },
-      // {
-      //   enforce: 'pre',
-      //   test: /\.(js|jsx)$/,
-      //   // loader: 'eslint-loader',
-      //   exclude: /(node_modules)/,
-      //   options: {
-      //     // formatter: eslint.CLIEngine.getFormatter('stylish'),
-      //     // emitWarning: process.env.NODE_ENV !== 'production',
-      //   },
-      // },
-      {
+    },{
         test: /\.exec\.js$/,
         use: ['script-loader']
-    },
-      {
+    },{
         test: /\.(js|jsx)$/,
         loader: 'babel-loader',
         exclude: /(node_modules)/,
