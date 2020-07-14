@@ -530,13 +530,27 @@ export default class App {
         const nodeOnScreenType = nodeOnScreen.properties.type.enum[0];
         const draggingType = this.dragging.properties.type.enum[0];
 
+        const alredyPushed = (rel, relationship) => {
+            let found = false;
+
+            rel.map(r => {
+                let t = relationship["sub-target"] ? relationship["sub-target"] : relationship.target;
+
+                if (r.targetObjectType === t && r.relationship_type === relationship.type) {
+                    found = true;
+                }
+            });
+
+            return found;
+        }
+
         let rel = [];
 
         if (nodeOnScreen.id !== this.dragging.id) {
             nodeOnScreen.relationships.map(relationship => {
                 if (relationship.target === draggingType) {
                     let madeRel = this.makeRelationship(nodeOnScreen, this.dragging, relationship);
-                    if (madeRel) {
+                    if (madeRel && !alredyPushed(rel, relationship)) {
                         rel.push(madeRel);
                     }
                 }
@@ -545,7 +559,7 @@ export default class App {
             this.dragging.relationships.map(relationship => {
                 if (relationship.target === nodeOnScreenType) {
                     let madeRel = this.makeRelationship(this.dragging, nodeOnScreen, relationship);
-                    if (madeRel) {
+                    if (madeRel && !alredyPushed(rel, relationship)) {
                         rel.push(madeRel);
                     }
                 }
@@ -773,7 +787,6 @@ export default class App {
         } catch (e) {
             this.growlMessage = "Incorrect JSON Syntax.";
             this.showGrowl = true;
-            console.warn(e);
         }
     }
 
@@ -886,7 +899,7 @@ export default class App {
 
         nodes.map(node => {
             for (let key in node.properties) {
-                if (node.required.indexOf(key) > -1) {
+                if (node.required && node.required.indexOf(key) > -1) {
                     // For required refs check the bundle
                     // instead of the node.
                     if (key.indexOf("_refs") > -1) {
@@ -950,6 +963,26 @@ export default class App {
     submit() {
         this.validateSubmission();
 
+        const pruneRelationshipObjectProperties = (bundle) => {
+            let pruneList = [
+                "targetObjectType",
+                "subTarget"
+            ];
+
+            bundle.objects.map(o => {
+                if (o.type === "relationship") {
+                    for (let key in o) {
+                        if (pruneList.indexOf(key) > -1) {
+                            delete o[key];
+                        }
+                    }
+                }
+            });
+
+            return bundle;
+        }
+
+
         if (!this.failedCollection.length) {
             let bundle = _cloneDeep(this.bundle);
 
@@ -965,13 +998,15 @@ export default class App {
                                 delete o[key];
                             }
                         } else {
-                            if (!o[key].length) {
+                            if (o[key] && !o[key].length) {
                                 delete o[key];
                             }
                         }
                     }
                 }
             });
+
+            bundle = pruneRelationshipObjectProperties(bundle);
 
             /***
             TODO plumb in your API call
