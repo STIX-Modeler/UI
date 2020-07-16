@@ -60,7 +60,7 @@ A proxy (https://github.com/STIX-Modeler/UI/blob/develop/app/src/stores/Proxy.js
 
 # Where do we go from here?
 
-A couple things come to mind. First, Some type of complex Indicator pattern expression builder. In STIX 2.0 This was less complicated since the pattern was just STIX syntax. Now that more pattern types are supported, though more powerful, more complex tooling is needed to support fully developing this feature out.
+A couple things come to mind. First, Some type of complex Indicator pattern expression builder. In STIX 2.0, this was less complicated since the pattern was just STIX syntax. Now that more pattern types are supported, though more powerful, more complex tooling is needed to support fully developing this feature out.
 
 The second thing that comes to mind, integrating the attack-pattern object with Mitre's CTI repo (https://github.com/mitre/cti).
 
