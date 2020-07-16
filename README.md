@@ -54,13 +54,15 @@ There is a modest production build that is also integrated. This can get a compi
 
 - $ npm run build
 
+The visualization is supported in the latest versions of Chrome, Firefox and Safari.
+
 A proxy (https://github.com/STIX-Modeler/UI/blob/develop/app/src/stores/Proxy.js) has been shimmed in place to submit data from the UI through any give workflow. This should make integration easier to pick up and run with. Right now, a logger is in place simply logging out the object. Simplly JSON.stingify the object and POST to an endpoint that is waiting for JSON 2.1 data.
 
 # Where do we go from here?
 
 A couple things come to mind. First, Some type of complex Indicator pattern expression builder. In STIX 2.0, this was less complicated since the pattern was just STIX syntax. Now that more pattern types are supported, though more powerful, more complex tooling is needed to support fully developing this feature out.
 
-The second thing that comes to mind, integrating the attack-pattern object with Mitre;s CTI repo (https://github.com/mitre/cti).
+The second thing that comes to mind, integrating the attack-pattern object with Mitre's CTI repo (https://github.com/mitre/cti).
 
 # Contact
 
