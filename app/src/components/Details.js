@@ -185,6 +185,7 @@ export default class Details extends React.Component {
                     </div>
                     break;
                 case "genericobject":
+                    console.log(props[prop].value)
                     control = <GenericObject name={prop}
                                 value={props[prop].value}
                                 description={props[prop].description}

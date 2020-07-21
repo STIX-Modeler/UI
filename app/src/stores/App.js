@@ -30,6 +30,8 @@ import opinion from "../definition-adapters/Opinion.js";
 import tlpred from "../definition-adapters/MarkingDefinitionRed.js";
 import tlpamber from "../definition-adapters/MarkingDefinitionAmber.js";
 import tlpgreen from "../definition-adapters/MarkingDefinitionGreen.js";
+import tlpwhite from "../definition-adapters/MarkingDefinitionWhite.js";
+import md from "../definition-adapters/MarkingDefinitionStatement.js";
 
 import obs from "../definition-adapters/Observable.js";
 import artifact from "../definition-adapters/Artifact.js";
@@ -94,6 +96,8 @@ export default class App {
         tlpred,
         tlpamber,
         tlpgreen,
+        tlpwhite,
+        md,
         artifact,
         obs,
         software,
@@ -161,6 +165,7 @@ export default class App {
 
             if (prop === "definition") {
                 newProps[prop] = props[prop];
+                delete newProps["definition"]["control"];
             }
         }
 
