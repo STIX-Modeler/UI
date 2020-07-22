@@ -4,11 +4,11 @@ import deepmerge from 'deepmerge';
 
 import {Base} from './Base';
 
-class MarkingDefinitionStatement extends Base  {
+class MarkingDefinitionWhite extends Base  {
 
     constructor() {
         const definition_extension = {
-            "img": "restricted-marking.png",
+            "img": "tlp-white.png",
             "prefix": "marking-definition--",
             "active": true,
             "relationships": [
@@ -38,12 +38,14 @@ class MarkingDefinitionStatement extends Base  {
 
         super(common, def);
 
-        this.properties.definition = {};
-        this.properties.definition.value = {};
-        this.properties.definition.control = "genericobject";
+        this.properties.definition = {
+            "tlp": "white"
+        };
+
+        this.properties["definition"].control = "hidden";
     }
 }
 
-const singleton = new MarkingDefinitionStatement();
+const singleton = new MarkingDefinitionWhite();
 
-export default singleton;
+export default singleton
