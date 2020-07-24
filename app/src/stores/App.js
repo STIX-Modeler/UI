@@ -448,6 +448,13 @@ export default class App {
     changeERValue(input, select, idx) {
         let nodeProp = this.selected.properties["external_references"].value;
 
+        try {
+            if (typeof JSON.parse(input) === "object") {
+                input = JSON.parse(input);
+            }
+        } catch (e) {
+        }
+
         nodeProp[idx][select] = input;
 
         this.bundle.objects.map(object => {

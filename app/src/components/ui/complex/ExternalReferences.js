@@ -101,7 +101,7 @@ const ReferenceBlock = (props) => {
 
         blocks.push(
             <div key={uuid()} className="er-block-row">
-                <div>{item}: {props.kv[item]} {remove}</div>
+                <div>{item}: {JSON.stringify(props.kv[item])} {remove}</div>
             </div>
         )
     }
