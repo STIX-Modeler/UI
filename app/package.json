@@ -55,7 +55,7 @@
   "dependencies": {
     "@babel/plugin-transform-react-constant-elements": "7.7.4",
     "@babel/plugin-transform-react-inline-elements": "7.7.4",
-    "axios": "^0.19.0",
+    "axios": "^0.21.1",
     "babel-plugin-transform-react-pure-class-to-function": "1.0.1",
     "babel-plugin-transform-react-remove-prop-types": "0.4.24",
     "core-js": "3.6.1",
