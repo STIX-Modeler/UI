@@ -62,7 +62,7 @@
     "deepmerge": "^4.2.2",
     "lazy-route": "^1.0.7",
     "leader-line": "^1.0.5",
-    "lodash": "4.17.19",
+    "lodash": "4.17.21",
     "mobx-react": "^6.1.4",
     "moment": "^2.24.0",
     "prop-types": "15.7.2",
