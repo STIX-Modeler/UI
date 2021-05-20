@@ -16,6 +16,7 @@ class Report extends Base  {
                 {"type": "references", "target": "sighting", "x_embed": "object_refs"},
                 {"type": "references", "target": "observed-data", "x_embed": "object_refs"},
                 {"type": "references", "target": "indicator", "x_embed": "object_refs"},
+                {"type": "references", "target": "vulnerability", "x_embed": "object_refs"},
                 {"type": "references", "target": "malware", "x_embed": "object_refs"},
                 {"type": "references", "target": "report", "x_embed": "object_refs"},
                 {"type": "references", "target": "attack-pattern", "x_embed": "object_refs"},
