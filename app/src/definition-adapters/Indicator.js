@@ -19,6 +19,7 @@ class Indicator extends Base  {
                 {"type": "indicates", "target": "threat-actor"},
                 {"type": "indicates", "target": "tool"},
                 {"type": "indicates", "target": "infrastructure"},
+                {"type": "based-on", "target": "observed-data"},
                 {"type": "created-by", "target": "identity", "x_exclusive": true, "x_embed": "created_by_ref"}
             ]
         }

@@ -16,6 +16,8 @@ class CourseOfAction extends Base  {
                 {"type": "mitigates", "target": "vulnerability"},
                 {"type": "mitigates", "target": "malware"},
                 {"type": "mitigates", "target": "tool"},
+                {"type": "investigates", "target": "indicator"},
+                {"type": "mitigates", "target": "indicator"},
                 {"type": "created-by", "target": "identity", "x_exclusive": true, "x_embed": "created_by_ref"}
             ]
         }
